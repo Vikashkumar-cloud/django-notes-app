@@ -1,28 +1,27 @@
-pipeline{
-    agent { label 'dev-server'}
+pipeline {
+    agent any
     
-    stages{
-        stage("Code clone"){
-            steps{
-                sh "whoami"
-            clone("https://github.com/LondheShubham153/django-notes-app.git","main")
-            }
+    stages {
+        stage("Git Clone"){
+           steps {
+               git branch: 'main', url: 'https://github.com/Vikashkumar-cloud/django-notes-app.git'
+           } 
         }
-        stage("Code Build"){
-            steps{
-            dockerbuild("notes-app","latest")
-            }
+        stage("Docker Build"){
+           steps {
+               sh 'whoami'
+               sh 'docker build -t notes-app .'
+           } 
         }
-        stage("Push to DockerHub"){
-            steps{
-                dockerpush("dockerHubCreds","notes-app","latest")
-            }
+        stage("Docker Push"){
+           steps {
+               echo 'Docker image has been push'
+           } 
         }
         stage("Deploy"){
-            steps{
-                deploy()
-            }
+           steps {
+               sh 'docker compose down && docker compose up -d'
+           } 
         }
-        
     }
 }
