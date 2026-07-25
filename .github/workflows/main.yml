@@ -1,0 +1,19 @@
+name: Deploy Djanjo App
+on: push
+jobs:
+  Build:
+    runs-on: self-hosted
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4.4.0
+
+      - name: Build Docker Image
+        run: docker build -t djangoimage .
+
+  Deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Deploy djongo app in docker
+        run: docker run -d --name djangoApp -p 8000:8000 djangoimage
+    
+        
