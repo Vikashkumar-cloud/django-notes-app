@@ -10,7 +10,9 @@ jobs:
       - name: Build Docker Image
         run: |
          whoami
-         docker build -t djangoimage ~/actions-runner/App/django-notes-app/django-notes-app/
+         docker ps 
+         docker images
+         docker build -t djangoimage /home/ubuntu/actions-runner/App/django-notes-app/django-notes-app/
 
   Deploy:
     runs-on: self-hosted
