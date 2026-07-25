@@ -16,6 +16,7 @@ jobs:
          docker build -t djangoimage /home/ubuntu/actions-runner/App/django-notes-app/django-notes-app/
 
   Deploy:
+    needs: Build
     runs-on: self-hosted
     steps:
       - name: Deploy djongo app in docker
