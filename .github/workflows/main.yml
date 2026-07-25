@@ -19,7 +19,7 @@ jobs:
     needs: Build
     runs-on: self-hosted
     steps:
-      - name: Deploy djongo app in docker
+      - name: Deploy djongo app in docker compose
         run: docker-compose up -d
     
         
