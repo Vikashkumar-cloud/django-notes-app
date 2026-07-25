@@ -20,6 +20,6 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Deploy djongo app in docker
-        run: docker run -d --name djangoApp -p 8000:8000 djangoimage
+        run: docker-compose up -d
     
         
